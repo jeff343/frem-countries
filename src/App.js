@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme, GlobalStyles } from "./styles/theme";
+import Header from "./components/Header";
 
 function App() {
   const [theme, setTheme] = useState(lightTheme)
@@ -13,8 +14,7 @@ function App() {
     <ThemeProvider theme={ theme }>
       <>
         <GlobalStyles />
-        <h1>Hello World</h1>
-        <button onClick={() => toggleTheme()}>Theme</button>
+        <Header toggleTheme={toggleTheme} theme={theme}/>
       </>
     </ThemeProvider>
   );
