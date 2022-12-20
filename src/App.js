@@ -1,22 +1,22 @@
+import { useState } from "react";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme, GlobalStyles } from "./styles/theme";
 
 function App() {
+  const [theme, setTheme] = useState(lightTheme)
+
+  const toggleTheme = () => {
+    setTheme(theme === lightTheme ? darkTheme : lightTheme)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={ theme }>
+      <>
+        <GlobalStyles />
+        <h1>Hello World</h1>
+        <button onClick={() => toggleTheme()}>Theme</button>
+      </>
+    </ThemeProvider>
   );
 }
 
