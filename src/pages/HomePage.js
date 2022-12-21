@@ -1,7 +1,13 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
+import FilterMenu from "../components/FilterMenu";
 
+const Container = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+`;
 
 const HomePage = () => {
     const [countries, setCountries] = useState([])
@@ -33,9 +39,10 @@ const HomePage = () => {
         //         <p>{countries.length}</p>
         //     )}
         // </>
-        <>
+        <Container>
             <SearchBar handleSearch={handleSearch} search={search}/>
-        </>
+            <FilterMenu />
+        </Container>
     )
 
 }
