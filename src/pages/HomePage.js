@@ -2,11 +2,21 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import FilterMenu from "../components/FilterMenu";
+import CountryCard from "../components/CountryCard";
 
-const Container = styled.div`
+const FilterContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 90%;
+    margin: auto;
+`;
+
+const CardContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 60px;
+    width: 90%;
+    margin: 40px auto;
 `;
 
 const HomePage = () => {
@@ -18,31 +28,34 @@ const HomePage = () => {
         console.log(search)
     }
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     const getCountries = async() => {
-    //         try {
-    //             const res = await fetch("https://restcountries.com/v3.1/all")
-    //             const data = await res.json()
-    //             setCountries(data.slice(0,10))
-    //         } catch (error){
-    //             console.log(error)
-    //         }
-    //     }
-    //     getCountries()
-    // }, [])
+        const getCountries = async() => {
+            try {
+                const res = await fetch("https://restcountries.com/v3.1/all")
+                const data = await res.json()
+                setCountries(data.slice(0,10))
+            } catch (error){
+                console.log(error)
+            }
+        }
+        getCountries()
+    }, [])
 
     return (
-        // <>
-        //     {!countries ? <h1>Loading...</h1> 
-        //     : (
-        //         <p>{countries.length}</p>
-        //     )}
-        // </>
-        <Container>
-            <SearchBar handleSearch={handleSearch} search={search}/>
-            <FilterMenu />
-        </Container>
+        <>
+            <FilterContainer>
+                <SearchBar handleSearch={handleSearch} search={search}/>
+                <FilterMenu />
+            </FilterContainer>
+            <CardContainer>
+                {!countries ? <h1>Loading...</h1> 
+                : (countries.map((country) => {
+                    return <CountryCard country={country} />
+            }))}
+            </CardContainer>
+        </>
+
     )
 
 }
