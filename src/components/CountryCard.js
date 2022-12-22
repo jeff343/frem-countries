@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
     display: flex;
@@ -56,19 +57,21 @@ const Bold = styled.span`
 const CountryCard = ({ country }) => {
 
     return(
-        <Container>
-            <CardImgRow>
-                <CardImg src={country.flags.svg} alt="country flag" />
-            </CardImgRow>
-            <CardRow>
-                <Country>{country.name.common}</Country>
-                <Description>
-                    <ListItem><Bold>Population:</Bold> {country.population}</ListItem>
-                    <ListItem><Bold>Region: </Bold>{country.region}</ListItem>
-                    <ListItem><Bold>Capital: </Bold> {country.capital[0]}</ListItem>
-                </Description>
-            </CardRow>
-        </Container>
+        <Link to={`/detail/${country.name.common}`}>
+            <Container>
+                <CardImgRow>
+                    <CardImg src={country.flags.svg} alt="country flag" />
+                </CardImgRow>
+                <CardRow>
+                    <Country>{country.name.common}</Country>
+                    <Description>
+                        <ListItem><Bold>Population:</Bold> {country.population}</ListItem>
+                        <ListItem><Bold>Region: </Bold>{country.region}</ListItem>
+                        <ListItem><Bold>Capital: </Bold> {country.capital[0]}</ListItem>
+                    </Description>
+                </CardRow>
+            </Container>
+        </Link>
     )
 }
 

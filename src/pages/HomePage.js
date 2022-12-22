@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import FilterMenu from "../components/FilterMenu";
 import CountryCard from "../components/CountryCard";
@@ -19,8 +19,8 @@ const CardContainer = styled.div`
     margin: 40px auto;
 `;
 
-const HomePage = () => {
-    const [countries, setCountries] = useState([])
+const HomePage = ({ countries }) => {
+    
     const [search, setSearch] = useState("")
 
     const handleSearch = (p) => {
@@ -28,19 +28,6 @@ const HomePage = () => {
         console.log(search)
     }
 
-    useEffect(() => {
-
-        const getCountries = async() => {
-            try {
-                const res = await fetch("https://restcountries.com/v3.1/all")
-                const data = await res.json()
-                setCountries(data.slice(0,10))
-            } catch (error){
-                console.log(error)
-            }
-        }
-        getCountries()
-    }, [])
 
     return (
         <>
