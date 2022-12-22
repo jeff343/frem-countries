@@ -4,19 +4,24 @@ import SearchBar from "../components/SearchBar";
 import FilterMenu from "../components/FilterMenu";
 import CountryCard from "../components/CountryCard";
 
+const Container = styled.div`
+    max-width: 1200px;
+    margin: auto;
+    width: 90%;
+`;
+
 const FilterContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 90%;
     margin: auto;
 `;
 
 const CardContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    row-gap: 60px;
-    width: 90%;
-    margin: 40px auto;
+    row-gap: 40px;
+    margin: 40px 0;
+    width: 100%;
 `;
 
 const HomePage = ({ countries }) => {
@@ -30,7 +35,7 @@ const HomePage = ({ countries }) => {
 
 
     return (
-        <>
+        <Container>
             <FilterContainer>
                 <SearchBar handleSearch={handleSearch} search={search}/>
                 <FilterMenu />
@@ -41,7 +46,7 @@ const HomePage = ({ countries }) => {
                     return <CountryCard country={country} />
             }))}
             </CardContainer>
-        </>
+        </Container>
 
     )
 

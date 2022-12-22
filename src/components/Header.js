@@ -5,30 +5,32 @@ import { lightTheme } from "../styles/theme";
 
 const Container = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     height: 100px;
     width: 100%;
-    background: ${props => props.theme.elements}
+    background: ${props => props.theme.elements};
+    box-shadow: 0px 0px 5px 0px lightgrey;
 `;
 
 const Column = styled.div`
     display: flex;
     width: 100%;
     height: 100%;
+    max-width: 600px;
 `;
 
 const Title = styled.h1`
     font-wieght: 600;
     margin: auto;
     font-size: 16px;
-    margin-left: 30px;
+    margin-left: 0px;
 `;
 
 const ThemeButton = styled.div`
     margin: auto;
     display: flex;
     align-items: center;
-    margin-right: 30px;
+    margin-right: 0px;
     border: none;
     background: none;
     font-size: 12px;

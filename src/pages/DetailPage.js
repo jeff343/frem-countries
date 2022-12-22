@@ -2,6 +2,12 @@ import styled from "styled-components";
 import arrowIcon from "../assets/images/back-arrow.svg";
 import { useParams } from "react-router-dom";
 
+const Container = styled.div`
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+`;
+
 const Button = styled.button`
     background: ${props => props.theme.elements};
     display: flex;
@@ -19,7 +25,7 @@ const Button = styled.button`
     }
 `;
 
-const Container = styled.div`
+const DisplayContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 90%;
@@ -82,7 +88,7 @@ const DetailPage = ({ countries }) => {
                 <img src={arrowIcon} alt="back arrow" />
                 <span>Back</span>
             </Button>
-            <Container>
+            <DisplayContainer>
                 <FlagWrapper>
                     <FlagImg src={country.flags.svg} alt="country flag" />
                 </FlagWrapper>
@@ -105,7 +111,7 @@ const DetailPage = ({ countries }) => {
                         <span>To Do</span>
                     </BorderLinks>
                 </InfoContainer>
-            </Container>
+            </DisplayContainer>
         </>
     )
 }

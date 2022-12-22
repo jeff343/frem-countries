@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    width: 300px;
-    height: 400px;
+    width: 250px;
+    height: 350px;
     margin: auto;
     border-radius: 10px;
     overflow: hidden;
@@ -14,7 +14,7 @@ const Container = styled.div`
 
 const CardImgRow = styled.div`
     background: ${props => props.theme.elements};
-    height: 200px;
+    height: 150px;
     width: 100%;
     margin: 0;
     display: flex;
@@ -22,8 +22,8 @@ const CardImgRow = styled.div`
 `;
 
 const CardImg = styled.img`
-    height: 200px;
-    width: 300px;
+    height: 150px;
+    width: 250px;
     object-fit: cover;
 `;
 
@@ -54,10 +54,15 @@ const Bold = styled.span`
     font-weight: 600;
 `;
 
+const StyledLink = styled(Link)`
+    color: ${props => props.theme.text};
+    text-decoration: none;
+`;
+
 const CountryCard = ({ country }) => {
 
     return(
-        <Link to={`/detail/${country.name.common}`}>
+        <StyledLink to={`/detail/${country.name.common}`}>
             <Container>
                 <CardImgRow>
                     <CardImg src={country.flags.svg} alt="country flag" />
@@ -71,7 +76,7 @@ const CountryCard = ({ country }) => {
                     </Description>
                 </CardRow>
             </Container>
-        </Link>
+        </StyledLink>
     )
 }
 

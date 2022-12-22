@@ -7,7 +7,7 @@ const Container = styled.div`
     position: relative;
     display: flex;
     width: auto;
-    margin: auto 20px auto;    
+    margin: auto 0px;    
 `;
 
 const Dropdown = styled.div`
