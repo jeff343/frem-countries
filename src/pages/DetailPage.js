@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import arrowIcon from "../assets/images/back-arrow.svg";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const Container = styled.div`
     width: 90%;
@@ -94,10 +94,13 @@ const BorderButton = styled(Button)`
     margin: auto 10px;
 `;
 
+const StyledLink = styled(Link)`
+    text-decoration: none;
+`;
+
 const DetailPage = ({ countries }) => {
 
     const  { countryName } = useParams()
-
 
     const country = countries.find((country) => country.name.common === countryName)
 
@@ -105,16 +108,35 @@ const DetailPage = ({ countries }) => {
         if (!b) {
             return false
         }
-
         const arr = []
-
         for (const i in b) {
             arr.push(countries.find((c) => (c.cca3 === b[i] || c.cioc === b[i])).name.common)
         }
-
         return arr
     }
 
+    const getCurrencies = (currency) => {
+        if (!currency) {
+            return false
+        }
+        const arr = []
+        for (const i in currency) {
+            arr.push(currency[i].name)
+        }
+        console.log(arr)
+        return arr
+    }
+
+    const getLanguages = (language) => {
+        const arr = []
+        for (const i in language) {
+            arr.push(language[i])
+        }
+        return arr
+    }
+
+    const languages = getLanguages(country.languages)
+    const currencies = getCurrencies(country.currencies) 
     const borders = getBorderName(country.borders)
 
 
@@ -122,10 +144,12 @@ const DetailPage = ({ countries }) => {
     return (
 
         <Container>
-            <Button>
-                <img src={arrowIcon} alt="back arrow" />
-                <span>Back</span>
-            </Button>
+            <StyledLink to={`/`}>
+                <Button>
+                    <img src={arrowIcon} alt="back arrow" />
+                    <span>Back</span>
+                </Button>
+            </StyledLink>
             <DisplayContainer>
                 <FlagWrapper>
                     <FlagImg src={country.flags.svg} alt="country flag" />
@@ -142,15 +166,27 @@ const DetailPage = ({ countries }) => {
                         </ListCol>
                         <ListCol>
                             <ListItem><Bold>Top Level Domain:</Bold> {country.tld[0]}</ListItem>
-                            <ListItem><Bold>Currencies:</Bold> {country.currencies[Object.keys(country.currencies)[0]].name}</ListItem>
-                            <ListItem><Bold>Languages:</Bold> To Do</ListItem>
+                            {currencies && 
+                                <ListItem>
+                                    <Bold>Currencies:</Bold> 
+                                    {currencies.map((currency) => {
+                                        return (<span key={currency}> {currency} </span>)})}
+                                </ListItem>}
+                            <ListItem><Bold>Languages:</Bold>
+                                {languages.map((language) => {
+                                        return (<span key={language}> {language} </span>)})}
+                            </ListItem>
                         </ListCol> 
                     </ListRow>
                     <BorderLinks>
                         <Bold>Borders: </Bold>
                         {borders 
                             ? borders.map((border) => {
-                                return <BorderButton key={border}>{border}</BorderButton>
+                                return (
+                                    <StyledLink to={`/detail/${border}`}>
+                                        <BorderButton key={border} >{border}</BorderButton>
+                                    </StyledLink>
+                                    )
                             })
                             : <span>None</span>
                         }
