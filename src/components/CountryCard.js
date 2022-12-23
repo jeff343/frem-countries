@@ -72,7 +72,7 @@ const CountryCard = ({ country }) => {
                     <Description>
                         <ListItem><Bold>Population:</Bold> {country.population}</ListItem>
                         <ListItem><Bold>Region: </Bold>{country.region}</ListItem>
-                        <ListItem><Bold>Capital: </Bold> {country.capital[0]}</ListItem>
+                        {country.capital && <ListItem><Bold>Capital: </Bold> {country.capital[0]}</ListItem>}
                     </Description>
                 </CardRow>
             </Container>

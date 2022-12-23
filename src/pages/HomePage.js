@@ -43,7 +43,7 @@ const HomePage = ({ countries }) => {
             <CardContainer>
                 {!countries ? <h1>Loading...</h1> 
                 : (countries.map((country) => {
-                    return <CountryCard country={country} />
+                    return <CountryCard country={country} key={country.name.common} />
             }))}
             </CardContainer>
         </Container>

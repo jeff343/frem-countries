@@ -19,6 +19,7 @@ const Button = styled.button`
     border: none;
     border-radius: 5px;
     margin: 60px 0;
+    color: ${props => props.theme.text};
 
     &:hover {
         cursor: pointer;
@@ -45,21 +46,31 @@ const FlagImg = styled.img`
 `;
 
 const InfoContainer = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     padding: 20px;
+    width: 100%;
 `;
 
 const Country = styled.h1`
     font-weight: 800;
     font-size: 20px;
-    grid-column: 1/3;
-    margin: auto 0;
+    margin: 0;
 `;
 
-const Info = styled.ul`
+const ListRow = styled.div`
+    display: flex;
+    width: 100%;
+    margin: 0;
+    justify-content: space-between;
+`;
+
+const ListCol = styled.ul`
     font-size: 14px;
     list-style-type: none;
+    margin: 0;
+    padding: 0;
 `;
 
 const ListItem = styled.li`
@@ -72,6 +83,15 @@ const Bold = styled.span`
 
 const BorderLinks = styled.div`
     grid-columns: 1/3;
+    display: flex;
+    align-items: center;
+`;
+
+const BorderButton = styled(Button)`
+    width: auto;
+    min-width: 50px;
+    padding: 0 5px;
+    margin: auto 10px;
 `;
 
 const DetailPage = ({ countries }) => {
@@ -81,9 +101,27 @@ const DetailPage = ({ countries }) => {
 
     const country = countries.find((country) => country.name.common === countryName)
 
+    const getBorderName = (b) => {
+        if (!b) {
+            return false
+        }
+
+        const arr = []
+
+        for (const i in b) {
+            arr.push(countries.find((c) => (c.cca3 === b[i] || c.cioc === b[i])).name.common)
+        }
+
+        return arr
+    }
+
+    const borders = getBorderName(country.borders)
+
+
+
     return (
 
-        <>
+        <Container>
             <Button>
                 <img src={arrowIcon} alt="back arrow" />
                 <span>Back</span>
@@ -94,25 +132,32 @@ const DetailPage = ({ countries }) => {
                 </FlagWrapper>
                 <InfoContainer>
                     <Country>{country.name.common}</Country>
-                    <Info>
-                        <ListItem><Bold>Native Name:</Bold> {country.name.nativeName.ara.common}</ListItem>
-                        <ListItem><Bold>Population:</Bold> {country.population}</ListItem>
-                        <ListItem><Bold>Region:</Bold> {country.region}</ListItem>
-                        <ListItem><Bold>Sub Region:</Bold> {country.subregion}</ListItem>
-                        <ListItem><Bold>Capital:</Bold> {country.capital[0]}</ListItem>
-                    </Info>
-                    <Info>
-                        <ListItem><Bold>Top Level Domain:</Bold> {country.tld[0]}</ListItem>
-                        <ListItem><Bold>Currencies:</Bold> {country.currencies[Object.keys(country.currencies)[0]].name}</ListItem>
-                        <ListItem><Bold>Languages:</Bold> To Do</ListItem>
-                    </Info>
+                    <ListRow>
+                        <ListCol>
+                            <ListItem><Bold>Native Name:</Bold> {country.name.nativeName[Object.keys(country.name.nativeName)[0]].common}</ListItem>
+                            <ListItem><Bold>Population:</Bold> {country.population}</ListItem>
+                            <ListItem><Bold>Region:</Bold> {country.region}</ListItem>
+                            <ListItem><Bold>Sub Region:</Bold> {country.subregion}</ListItem>
+                            {country.capital && <ListItem><Bold>Capital:</Bold> {country.capital[0]}</ListItem>}
+                        </ListCol>
+                        <ListCol>
+                            <ListItem><Bold>Top Level Domain:</Bold> {country.tld[0]}</ListItem>
+                            <ListItem><Bold>Currencies:</Bold> {country.currencies[Object.keys(country.currencies)[0]].name}</ListItem>
+                            <ListItem><Bold>Languages:</Bold> To Do</ListItem>
+                        </ListCol> 
+                    </ListRow>
                     <BorderLinks>
-                        <Bold>Border Countries: </Bold>
-                        <span>To Do</span>
+                        <Bold>Borders: </Bold>
+                        {borders 
+                            ? borders.map((border) => {
+                                return <BorderButton key={border}>{border}</BorderButton>
+                            })
+                            : <span>None</span>
+                        }
                     </BorderLinks>
                 </InfoContainer>
             </DisplayContainer>
-        </>
+        </Container>
     )
 }
 

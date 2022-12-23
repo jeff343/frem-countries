@@ -21,7 +21,7 @@ function App() {
         try {
             const res = await fetch("https://restcountries.com/v3.1/all")
             const data = await res.json()
-            setCountries(data.slice(0,10))
+            setCountries(data)
         } catch (error){
             console.log(error)
         }
