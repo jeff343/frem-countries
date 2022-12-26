@@ -3,13 +3,21 @@ import moonSVG from "../assets/images/moon.svg"
 import moonFillSVG from "../assets/images/moon-fill.svg"
 import { lightTheme } from "../styles/theme";
 
-const Container = styled.div`
+const Background = styled.div`
     display: flex;
     justify-content: center;
     height: 100px;
     width: 100%;
     background: ${props => props.theme.elements};
-    box-shadow: 0px 0px 5px 0px lightgrey;
+    box-shadow: ${props => props.theme.shadow};
+`;
+
+const Container = styled.div`
+    margin: auto;
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
 `;
 
 const Column = styled.div`
@@ -22,8 +30,11 @@ const Column = styled.div`
 const Title = styled.h1`
     font-wieght: 600;
     margin: auto;
-    font-size: 16px;
+    font-size: 20px;
     margin-left: 0px;
+    @media (max-width: 800px) {
+        font-size: 16px;
+    }
 `;
 
 const ThemeButton = styled.div`
@@ -49,17 +60,19 @@ const MoonIcon = styled.img`
 const Header = ({ toggleTheme, theme }) => {
 
     return (
-        <Container>
-            <Column>
-                <Title>Where in the world?</Title>
-            </Column>
-            <Column>
-                <ThemeButton onClick={() => toggleTheme()}>
-                    <MoonIcon src={(theme === lightTheme) ? moonSVG : moonFillSVG} alt='theme icon' />
-                    <h3>Dark Mode</h3> 
-                </ThemeButton>
-            </Column>
-        </Container>
+        <Background>
+            <Container>
+                <Column>
+                    <Title>Where in the world?</Title>
+                </Column>
+                <Column>
+                    <ThemeButton onClick={() => toggleTheme()}>
+                        <MoonIcon src={(theme === lightTheme) ? moonSVG : moonFillSVG} alt='theme icon' />
+                        <h3>Dark Mode</h3> 
+                    </ThemeButton>
+                </Column>
+            </Container>
+        </Background>
     )        
 }
 

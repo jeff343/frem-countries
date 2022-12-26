@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import caretIcon from "../assets/images/caret-down.svg"
+import closeIcon from "../assets/images/close.svg"
 
 
 const Container = styled.div`
@@ -20,7 +21,7 @@ const Dropdown = styled.div`
     width: 200px;
     padding: 0 20px;
     border-radius: 5px;
-    box-shadow: 0px 0px 5px 0px lightgrey;
+    box-shadow: ${props => props.theme.shadow};
 
     &:hover {
         cursor: pointer;
@@ -36,7 +37,7 @@ const OptionsWrapper = styled.div`
     top: 45px;
     width: 200px;
     border-radius: 5px;
-    box-shadow: 0px 0px 5px 0px lightgrey;
+    box-shadow: ${props => props.theme.shadow};
     overflow: hidden;
 `;
 const Option = styled.div`
@@ -58,23 +59,35 @@ const Text = styled.span`
 
 const Icon = styled.img`
     height: 16px;
+    filter: ${props => props.theme.filter};
 `;
 
-const FilterMenu = ({ filterValue, filterSelect}) => {
+const FilterMenu = ({ filterValue, filterSelect, filterActive}) => {
     const regionArr = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
     const [menuDisplay, setMenuDisplay] = useState(false)
 
+    const handleMenu = () => {
+        if (filterActive) {
+            filterSelect(filterValue)
+        } else {
+            setMenuDisplay(!menuDisplay)
+        }
+
+    }
 
     return (
         <Container>
-            <Dropdown onClick={() => setMenuDisplay(!menuDisplay)}>
+            <Dropdown onClick={() => handleMenu()}>
                 <Text>{filterValue}</Text>
-                <Icon src={caretIcon} alt="arrow down"/>
+                {filterActive
+                    ? <Icon src={closeIcon} alt="clear filter" />
+                    : <Icon src={caretIcon} alt="arrow down" />
+                }           
             </Dropdown>
                 <OptionsWrapper menuDisplay={menuDisplay} onClick={()=> setMenuDisplay(false)}>
                     {regionArr.map((region) => {
                         return (
-                            <Option key={region} onClick={() => filterSelect(region)}>
+                            <Option key={region} filterValue={filterValue} onClick={() => filterSelect(region)}>
                                 <Text>{region}</Text>
                             </Option>
                         )

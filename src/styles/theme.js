@@ -12,7 +12,8 @@ const lightTheme = {
     text: 'hsl(200, 15%, 8%)',
     elements: 'hsl(0, 0%, 100%)',
     ph: '#A8A8A8',
-    filter: 'invert(53%) sepia(0%) saturate(949%) hue-rotate(316deg) brightness(96%) contrast(92%)'
+    filter: 'invert(53%) sepia(0%) saturate(949%) hue-rotate(316deg) brightness(96%) contrast(92%)',
+    shadow: '0px 0px 5px -2px grey'
 }
 
 const darkTheme = {
@@ -20,7 +21,8 @@ const darkTheme = {
     text: 'hsl(0, 0%, 100%)',
     elements: 'hsl(209, 23%, 22%)',
     ph: 'hsl(0, 0%, 100%)',
-    filter: 'invert(100%) sepia(3%) saturate(12%) hue-rotate(103deg) brightness(105%) contrast(105%)'
+    filter: 'invert(100%) sepia(3%) saturate(12%) hue-rotate(103deg) brightness(105%) contrast(105%)',
+    shadow: '0px 0px 5px -2px black'
 }
 
 export { GlobalStyles }

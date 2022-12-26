@@ -14,6 +14,9 @@ const FilterContainer = styled.div`
     display: flex;
     justify-content: space-between;
     margin: auto;
+    @media (max-width: 800px) {
+        flex-direction: column;
+    }
 `;
 
 const CardContainer = styled.div`
@@ -22,6 +25,18 @@ const CardContainer = styled.div`
     row-gap: 40px;
     margin: 40px 0;
     width: 100%;
+
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+    }
 `;
 
 const HomePage = ({ countries }) => {
@@ -53,7 +68,7 @@ const HomePage = ({ countries }) => {
         <Container>
             <FilterContainer>
                 <SearchBar search={search} handleSearch={handleSearch} />
-                <FilterMenu filterValue={filterValue} filterSelect={filterSelect} />
+                <FilterMenu filterValue={filterValue} filterActive={filterActive} filterSelect={filterSelect} />
             </FilterContainer>
             <CardContainer>
                 {!countries ? <h1>Loading...</h1> 

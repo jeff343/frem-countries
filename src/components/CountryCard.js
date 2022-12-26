@@ -9,7 +9,7 @@ const Container = styled.div`
     margin: auto;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0px 0px 5px 0px lightgrey;
+    box-shadow: ${props => props.theme.shadow};
 `;
 
 const CardImgRow = styled.div`
@@ -70,7 +70,7 @@ const CountryCard = ({ country }) => {
                 <CardRow>
                     <Country>{country.name.common}</Country>
                     <Description>
-                        <ListItem><Bold>Population:</Bold> {country.population}</ListItem>
+                        <ListItem><Bold>Population:</Bold> {country.population.toLocaleString()}</ListItem>
                         <ListItem><Bold>Region: </Bold>{country.region}</ListItem>
                         {country.capital && <ListItem><Bold>Capital: </Bold> {country.capital[0]}</ListItem>}
                     </Description>

@@ -10,7 +10,11 @@ const Container = styled.div`
     height: 40px;
     margin: 20px 0;
     border-radius: 5px;
-    box-shadow: 0px 0px 5px 0px lightgrey;
+    box-shadow: ${props => props.theme.shadow};
+
+    @media (max-width: 800px) {
+        width: 100%;
+    }
 `;
 
 const SearchInput = styled.input`
@@ -34,17 +38,13 @@ const IconWrapper = styled.div`
     width: 40px;
     height: 100%;
     display: flex;
-
-    &:hover {
-        cursor: pointer;
-    }
 `;
 
 const Icon = styled.img`
     height: 16px;
     width: auto;
     margin: auto;
-    filter: ${props => props.theme.filter}
+    filter: ${props => props.theme.filter};
 `;
 
 const SearchBar = ({ handleSearch, search }) => {

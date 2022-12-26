@@ -15,7 +15,7 @@ const Button = styled.button`
     justify-content: space-evenly;
     height: 30px;
     width: 100px;
-    box-shadow: 0px 0px 5px 0px lightgrey;
+    box-shadow: ${props => props.theme.shadow};
     border: none;
     border-radius: 5px;
     margin: 60px 0;
