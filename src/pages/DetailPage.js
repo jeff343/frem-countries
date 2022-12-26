@@ -188,7 +188,7 @@ const DetailPage = ({ countries }) => {
                                     </StyledLink>
                                     )
                             })
-                            : <span>None</span>
+                            : <span> None</span>
                         }
                     </BorderLinks>
                 </InfoContainer>

@@ -60,20 +60,10 @@ const Icon = styled.img`
     height: 16px;
 `;
 
-const FilterMenu = () => {
-    const regionArr = ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
-    const [filterValue, setFilterValue] = useState("Filter by Region")
+const FilterMenu = ({ filterValue, filterSelect}) => {
+    const regionArr = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
     const [menuDisplay, setMenuDisplay] = useState(false)
 
-    const filterSelect = (reg) => {
-        if (reg === filterValue) {
-            setFilterValue("Filter by Region")
-            console.log('click')
-        } else {
-            setFilterValue(reg)
-            console.log(filterValue)
-        }
-    }
 
     return (
         <Container>
@@ -81,7 +71,7 @@ const FilterMenu = () => {
                 <Text>{filterValue}</Text>
                 <Icon src={caretIcon} alt="arrow down"/>
             </Dropdown>
-                <OptionsWrapper menuDisplay={menuDisplay}>
+                <OptionsWrapper menuDisplay={menuDisplay} onClick={()=> setMenuDisplay(false)}>
                     {regionArr.map((region) => {
                         return (
                             <Option key={region} onClick={() => filterSelect(region)}>
