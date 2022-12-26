@@ -40,25 +40,28 @@ const HomePage = ({ countries }) => {
         }
     }
 
+    const searchFilter = (countries) => {
+        return (countries.filter((country) => country.name.common.toLowerCase().includes(search.toLowerCase())))
+    }
+
     const handleSearch = (p) => {
         setSearch(p)
-        console.log(search)
    }
 
 
     return (
         <Container>
             <FilterContainer>
-                <SearchBar handleSearch={handleSearch} search={search}/>
+                <SearchBar search={search} handleSearch={handleSearch} />
                 <FilterMenu filterValue={filterValue} filterSelect={filterSelect} />
             </FilterContainer>
             <CardContainer>
                 {!countries ? <h1>Loading...</h1> 
                 : (filterActive) 
-                    ? (countries.filter((country) => country.region === filterValue)).map((country) => {
+                    ? (searchFilter(countries).filter((country) => country.region === filterValue)).map((country) => {
                         return <CountryCard country={country} key={country.name.common} />
                     })
-                    :(countries.map((country) => {
+                    :(searchFilter(countries).map((country) => {
                         return <CountryCard country={country} key={country.name.common} />
             }))}
             </CardContainer>
