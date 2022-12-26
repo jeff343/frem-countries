@@ -27,11 +27,14 @@ const Button = styled.button`
 `;
 
 const DisplayContainer = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 90%;
+    display: flex;
+    justify-content: space-between;
     column-gap: 30px;
     margin: 40px auto;
+
+    @media (max-width: 800px) {
+        flex-direction: column;
+    }
 `;
 
 const FlagWrapper = styled.div`
@@ -64,6 +67,10 @@ const ListRow = styled.div`
     width: 100%;
     margin: 0;
     justify-content: space-between;
+
+    @media (max-width: 800px) {
+        flex-direction: column;
+    }
 `;
 
 const ListCol = styled.ul`
@@ -71,6 +78,11 @@ const ListCol = styled.ul`
     list-style-type: none;
     margin: 0;
     padding: 0;
+    width: 100%;
+
+    @media (max-width: 800px) {
+        margin: 20px auto;
+    }
 `;
 
 const ListItem = styled.li`
@@ -81,17 +93,41 @@ const Bold = styled.span`
     font-weight: 600;
 `;
 
-const BorderLinks = styled.div`
+const BorderContainer = styled.div`
     grid-columns: 1/3;
-    display: flex;
-    align-items: center;
+    display:  flex;
+    align-items: flex-start;
+    margin-top: 15px;
+
+    @media (max-width: 800px) {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+    }
+`;
+
+const BorderLinks = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    row-gap: 15px;
+    margin-left: 10px;
+    justify-content: space-between;
+    width: 100%;
+
+    @media (max-width: 800px) {
+        margin: 10px 0;
+    }
 `;
 
 const BorderButton = styled(Button)`
-    width: auto;
-    min-width: 50px;
+    width: 100px;
     padding: 0 5px;
-    margin: auto 10px;
+    margin: 0 auto;
+    font-size: 12px;
+
+    @media (max-width: 800px) {
+        width: 75px;
+    }
 `;
 
 const StyledLink = styled(Link)`
@@ -123,7 +159,6 @@ const DetailPage = ({ countries }) => {
         for (const i in currency) {
             arr.push(currency[i].name)
         }
-        console.log(arr)
         return arr
     }
 
@@ -159,7 +194,7 @@ const DetailPage = ({ countries }) => {
                     <ListRow>
                         <ListCol>
                             <ListItem><Bold>Native Name:</Bold> {country.name.nativeName[Object.keys(country.name.nativeName)[0]].common}</ListItem>
-                            <ListItem><Bold>Population:</Bold> {country.population}</ListItem>
+                            <ListItem><Bold>Population:</Bold> {country.population.toLocaleString()}</ListItem>
                             <ListItem><Bold>Region:</Bold> {country.region}</ListItem>
                             <ListItem><Bold>Sub Region:</Bold> {country.subregion}</ListItem>
                             {country.capital && <ListItem><Bold>Capital:</Bold> {country.capital[0]}</ListItem>}
@@ -168,29 +203,33 @@ const DetailPage = ({ countries }) => {
                             <ListItem><Bold>Top Level Domain:</Bold> {country.tld[0]}</ListItem>
                             {currencies && 
                                 <ListItem>
-                                    <Bold>Currencies:</Bold> 
-                                    {currencies.map((currency) => {
-                                        return (<span key={currency}> {currency} </span>)})}
+                                    <Bold>Currencies: </Bold> 
+                                    {/* {currencies.map((currency) => {
+                                        return (<span key={currency}> {currency} </span>)})} */}
+                                    {currencies.join(', ')}
                                 </ListItem>}
-                            <ListItem><Bold>Languages:</Bold>
-                                {languages.map((language) => {
-                                        return (<span key={language}> {language} </span>)})}
+                            <ListItem><Bold>Languages: </Bold>
+                                {/* {languages.map((language) => {
+                                        return (<span key={language}> {language} </span>)})} */}
+                                {languages.join(', ')}
                             </ListItem>
                         </ListCol> 
                     </ListRow>
-                    <BorderLinks>
+                    <BorderContainer>
                         <Bold>Borders: </Bold>
-                        {borders 
-                            ? borders.map((border) => {
-                                return (
-                                    <StyledLink to={`/detail/${border}`}>
-                                        <BorderButton key={border} >{border}</BorderButton>
-                                    </StyledLink>
-                                    )
-                            })
-                            : <span> None</span>
-                        }
-                    </BorderLinks>
+                        <BorderLinks>
+                            {borders 
+                                ? borders.map((border) => {
+                                    return (
+                                        <StyledLink to={`/detail/${border}`}>
+                                            <BorderButton key={border} >{border}</BorderButton>
+                                        </StyledLink>
+                                        )
+                                })
+                                : <span> None</span>
+                            }
+                        </BorderLinks>
+                    </BorderContainer>
                 </InfoContainer>
             </DisplayContainer>
         </Container>
