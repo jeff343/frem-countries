@@ -26,6 +26,10 @@ const Button = styled.button`
     }
 `;
 
+const Icon = styled.img`
+    filter: ${props => props.theme.filter}
+`;
+
 const DisplayContainer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -181,7 +185,7 @@ const DetailPage = ({ countries }) => {
         <Container>
             <StyledLink to={`/`}>
                 <Button>
-                    <img src={arrowIcon} alt="back arrow" />
+                    <Icon src={arrowIcon} alt="back arrow" />
                     <span>Back</span>
                 </Button>
             </StyledLink>
@@ -204,13 +208,9 @@ const DetailPage = ({ countries }) => {
                             {currencies && 
                                 <ListItem>
                                     <Bold>Currencies: </Bold> 
-                                    {/* {currencies.map((currency) => {
-                                        return (<span key={currency}> {currency} </span>)})} */}
                                     {currencies.join(', ')}
                                 </ListItem>}
                             <ListItem><Bold>Languages: </Bold>
-                                {/* {languages.map((language) => {
-                                        return (<span key={language}> {language} </span>)})} */}
                                 {languages.join(', ')}
                             </ListItem>
                         </ListCol> 
@@ -221,8 +221,8 @@ const DetailPage = ({ countries }) => {
                             {borders 
                                 ? borders.map((border) => {
                                     return (
-                                        <StyledLink to={`/detail/${border}`}>
-                                            <BorderButton key={border} >{border}</BorderButton>
+                                        <StyledLink to={`/detail/${border}`} key={border}>
+                                            <BorderButton>{border}</BorderButton>
                                         </StyledLink>
                                         )
                                 })

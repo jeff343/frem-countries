@@ -31,17 +31,15 @@ function App() {
 
   return (
     <ThemeProvider theme={ theme }>
-      <>
-        <GlobalStyles />
-        <Header toggleTheme={toggleTheme} theme={theme}/>
-        <Routes>
-          <Route path='/' element={<HomePage countries={countries} />} />
-          <Route 
-            path='/detail/:countryName'
-            element={<DetailPage countries={countries} />}
-          />
-        </Routes>
-      </>
+      <GlobalStyles />
+      <Header toggleTheme={toggleTheme} theme={theme}/>
+      <Routes>
+        <Route path='/' element={<HomePage countries={countries} />} />
+        <Route 
+          path='/detail/:countryName'
+          element={<DetailPage countries={countries} />}
+        />
+      </Routes>
     </ThemeProvider>
   );
 }
