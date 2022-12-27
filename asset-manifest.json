@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/frem-countries/static/css/main.db71ca13.css",
+    "main.js": "/frem-countries/static/js/main.f0d9f374.js",
+    "static/media/moon.svg": "/frem-countries/static/media/moon.428172759a0035bf9764dd2c8bab0ffd.svg",
+    "index.html": "/frem-countries/index.html",
+    "static/media/moon-fill.svg": "/frem-countries/static/media/moon-fill.8f1c9be58c21e2f72dc2cb46ea3b34fc.svg",
+    "static/media/close.svg": "/frem-countries/static/media/close.bf336e028987a73240cf8ed5e6c600bd.svg",
+    "static/media/search-icon.svg": "/frem-countries/static/media/search-icon.4b174aba3ca9225719f55dc131b8d17e.svg",
+    "static/media/back-arrow.svg": "/frem-countries/static/media/back-arrow.ef02da4279102360fbcd4f5dce77648b.svg",
+    "static/media/caret-down.svg": "/frem-countries/static/media/caret-down.dbf503a09b5d9d0066499daa8c362081.svg",
+    "main.db71ca13.css.map": "/frem-countries/static/css/main.db71ca13.css.map",
+    "main.f0d9f374.js.map": "/frem-countries/static/js/main.f0d9f374.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.db71ca13.css",
+    "static/js/main.f0d9f374.js"
+  ]
+}
