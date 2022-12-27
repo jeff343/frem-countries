@@ -114,12 +114,13 @@ const BorderLinks = styled.div`
     display: grid;
     grid-template-columns: repeat(3, auto);
     row-gap: 15px;
+    column-gap: 20px;
     margin-left: 10px;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
 
     @media (max-width: 800px) {
-        margin: 10px 0;
+        margin: 10px 20px;
     }
 `;
 

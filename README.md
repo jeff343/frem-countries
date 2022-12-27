@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [REST Countries](https://jeff343.github.io/frem-countries/)
+- Live Site URL: [REST Countries Challenge](https://jeff343.github.io/frem-countries)
 
 ## My process
 
@@ -44,12 +44,16 @@ Users should be able to:
 
 ### What I learned
 
-Going into this project I had never worked with a REST API so it was good to learn how to fetch and access the data. The project also called for a light and dark theme so I was able to learn how to set up a global theme with Styled Components, which allowed me to alternate between themes. Working with external data was not much different than what I have been doing so far, but it did have its challenges. Not knowing exactly how the data was structured gave me a couple hurdles. For example, it was only after testing the details page I realized that some countries did not have certain values, like country capital. I handled this by short circuiting the render based on if country.capital existed. Also some of the keys  were dynamic based on thier values, such as curerncies and languages. In order to access all of the keys I decided to create a function that looped through each key and returned the value.
+Going into this project I had never worked with a REST API so it was good to learn how to fetch and access the data. The challenge called for all countries to be displayed on the home page, so I fetched all data from the REST Country API on the initial render and stored it in a local state variable Countries. 
+
+Working with external data was not much different than what I have been doing so far, but it did have its challenges. Not knowing exactly how the data was structured gave me a couple hurdles. For example, it was only after testing the details page I realized that some countries did not have certain values, like country capital. I handled this by conditionally displaying the capitals by checking if country.capitals exists. Also some of the keys of the country data were dynamic based on their values. Endpoints such as country.currency and country.languages had unique keys with names derived from their values, as well as a different amount of keys per country. In order to access these values I created a function to iterate through each key in the enpdoint to return their value, regardless of the name and quantity of keys.
+
+The project also called for a light and dark theme so I was able to learn how to set up a global theme with Styled Components, which allowed me to alternate between themes.
 
 
 ### Continued development
 
-Going forward I would like to keep working on bigger, multipage projects. I think it would be good to learn how to handle state in a larger application whether its with React, or using a state management library such as React Redux.
+Going forward I would like to keep working on bigger, multipage projects. I think it would be good to learn how to handle state in a larger application whether it's with React, or using a state management library such as React Redux.
 
 ### Useful resources
 
